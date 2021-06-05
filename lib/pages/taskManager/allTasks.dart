@@ -92,9 +92,9 @@ class _AllTasksPageState extends State<AllTasksPage> {
       case 3:
         searchValue = searchValue.toLowerCase();
         tasksObject.allTasks.forEach((element) {
-          String name = element.name;
-          String assignment = element.assignment;
-          String deadlineFormatted = DateFormat('d MMMM yyyy').format(element.deadline);
+          String name = element.name.toLowerCase();
+          String assignment = element.assignment.toLowerCase();
+          String deadlineFormatted = DateFormat('d MMMM yyyy').format(element.deadline).toLowerCase();
           if(name.contains(searchValue) || searchValue.contains(name) || assignment.contains(searchValue) || searchValue.contains(assignment) || deadlineFormatted.contains(searchValue) || searchValue.contains(deadlineFormatted)){
             filteredTasks.add(element);
           }
