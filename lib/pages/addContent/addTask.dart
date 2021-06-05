@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:sschedule/settings/settings.dart';
 import 'package:sschedule/settings/tasks.dart';
 import 'package:sschedule/utilities/notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class AddTask extends StatefulWidget {

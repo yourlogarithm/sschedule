@@ -4,6 +4,7 @@ import 'package:sschedule/settings/schedule.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:sschedule/ads.dart';
 
 class ChangeNameDialog extends StatefulWidget {
   // const ChangeNameDialog({Key key}) : super(key: key);
@@ -62,6 +63,7 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
         TextButton(
           onPressed: () {
             if (controller.text.length >= 2 && controller.text[0] != ' ' && controller.text[1] != ' ') {
+              interstitionalAd();
               settingsObject.name = controller.text;
               settingsObject.writeToFile();
               Navigator.pop(context);
@@ -147,6 +149,7 @@ class _ChangeColorSchemeDialogState extends State<ChangeColorSchemeDialog> {
         ),
         TextButton(
           onPressed: () {
+            interstitionalAd();
             setState(() {
               switch (selected) {
                 case 'Dark Green':
@@ -228,12 +231,13 @@ class _ChangeWeekDayStartState extends State<ChangeWeekDayStart> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Cancel',
-              style:
-              TextStyle(color: settingsObject.colorScheme.gradientMedium)),
+          child: Text(
+              'Cancel',
+              style: TextStyle(color: settingsObject.colorScheme.gradientMedium)),
         ),
         TextButton(
           onPressed: () {
+            interstitionalAd();
             scheduleObject.weekStart = selected;
             scheduleObject.writeToFile();
             Navigator.pop(context);
@@ -303,6 +307,7 @@ class _ChangeLessonDurationState extends State<ChangeLessonDuration> {
         ),
         TextButton(
           onPressed: () {
+            interstitionalAd();
             scheduleObject.lessonDuration = lessonDuration;
             scheduleObject.writeToFile();
             Navigator.pop(context);
@@ -417,6 +422,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
         ),
         TextButton(
           onPressed: () {
+            interstitionalAd();
             settingsObject.changeImage(_image);
             settingsObject.writeToFile();
             Navigator.pop(context);
