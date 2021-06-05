@@ -40,7 +40,6 @@ class _LoadingState extends State<Loading> {
   }
   @override
   void initState() {
-    initializeSetting();
     tz.initializeTimeZones();
     // TODO: implement initState
     super.initState();
