@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:sschedule/settings/settings.dart';
 import 'package:sschedule/settings/tasks.dart';
 import 'package:sschedule/utilities/notifications.dart';
+import 'package:sschedule/ads.dart';
 
 class AddTask extends StatefulWidget {
   final bool edit;
@@ -181,7 +182,7 @@ class _AddTaskState extends State<AddTask> {
                             child: TextField(
                                 controller: taskController,
                                 maxLines: 4,
-                                maxLength: 70,
+                                maxLength: 200,
                                 textInputAction: TextInputAction.done,
                                 cursorColor: settingsObject.colorScheme.gradientMedium,
                                 style: TextStyle(
@@ -192,7 +193,8 @@ class _AddTaskState extends State<AddTask> {
                                     hintStyle: TextStyle(
                                         fontFamily: 'Open Sans',
                                         fontWeight: FontWeight.w600,
-                                        color: colorTaskHint),
+                                        color: colorTaskHint
+                                    ),
                                     focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10),
@@ -289,6 +291,7 @@ class _AddTaskState extends State<AddTask> {
                       currentFocus.unfocus();
                     }
                     if (titleController.text.isNotEmpty && taskController.text.isNotEmpty && deadlineValue != DateTime(1900)) {
+                      interstitionalAd();
                       DateTime creationDate = DateTime.now();
                       int id;
                       if (tasksObject.allTasks.isNotEmpty) {
