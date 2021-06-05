@@ -39,6 +39,7 @@ class _LoadingState extends State<Loading> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    interstitionalAd();
     settingsObject.init().then((_){
       settingsObject.setColorScheme(settingsObject.stringColorScheme);
     });
@@ -46,14 +47,9 @@ class _LoadingState extends State<Loading> {
       scheduleObject.setWeekDays();
     });
     subjectIconsObject.getPaths().then((value) => subjectIconsObject.paths = value);
-    tasksObject.init().then((_){});
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    interstitionalAd(func: nextRoute);
+    tasksObject.init().then((_){
+      nextRoute();
+    });
   }
 
   @override

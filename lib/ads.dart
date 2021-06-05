@@ -1,6 +1,6 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void interstitionalAd({Function func = print}){
+void interstitionalAd(){
   AdManagerInterstitialAd? _interstitialAd;
   AdManagerInterstitialAd.load(
       adUnitId: 'ca-app-pub-3940256099942544/1033173712',
@@ -12,16 +12,14 @@ void interstitionalAd({Function func = print}){
           _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (AdManagerInterstitialAd ad) {
               ad.dispose();
-              func();
             },
             onAdFailedToShowFullScreenContent: (AdManagerInterstitialAd ad, AdError error) {
               ad.dispose();
-              func();
             },
           );
         },
         onAdFailedToLoad: (LoadAdError error) {
-          func();
+          print('Failed to Load $error');
         },
       )
   );
