@@ -336,12 +336,13 @@ class _AddTaskState extends State<AddTask> {
                         tasksObject.allTasks.remove(widget.task);
                       }
                       tasksObject.writeToFile();
-                      displayNotification(titleController.text, taskController.text, deadlineValue);
+                      if (widget.task.status == 'active'){
+                        displayNotification(titleController.text, taskController.text, deadlineValue);
+                      }
                       setState(() {
                         titleController.clear();
                         taskController.clear();
-                        dateTimeContent = emptyDateTimeContent(
-                            false, Color.fromRGBO(115, 115, 115, 1));
+                        dateTimeContent = emptyDateTimeContent(false, Color.fromRGBO(115, 115, 115, 1));
                         colorContainer = Color.fromRGBO(246, 246, 246, 1);
                         deadlineValue = DateTime(1900);
                         addedSuccessfully = 'Added successfuly';
