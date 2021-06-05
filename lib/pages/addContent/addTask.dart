@@ -5,7 +5,6 @@ import 'dart:math';
 import 'package:sschedule/settings/settings.dart';
 import 'package:sschedule/settings/tasks.dart';
 import 'package:sschedule/utilities/notifications.dart';
-import 'package:timezone/data/latest.dart' as tz;
 
 class AddTask extends StatefulWidget {
   final bool edit;
@@ -91,8 +90,6 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   void initState() {
-    initializeSetting();
-    tz.initializeTimeZones();
     super.initState();
     bool initEdit = widget.edit ? true : false;
     dateTimeContent = emptyDateTimeContent(initEdit, Color.fromRGBO(115, 115, 115, 1));

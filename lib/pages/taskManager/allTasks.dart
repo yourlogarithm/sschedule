@@ -3,11 +3,13 @@ import 'package:intl/intl.dart';
 import 'package:sschedule/settings/settings.dart';
 import 'package:sschedule/utilities/gradienttext.dart';
 import 'package:sschedule/settings/tasks.dart';
+import 'package:sschedule/utilities/notifications.dart';
 import 'package:sschedule/utilities/painter.dart';
 import 'package:sschedule/content.dart';
 import '../addContent/addContent.dart';
 import 'package:sschedule/settings/schedule.dart';
 import 'taskPage.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 class AllTasksPage extends StatefulWidget {
   // const AllTasksPage({Key key}) : super(key: key);
@@ -283,9 +285,10 @@ class _AllTasksPageState extends State<AllTasksPage> {
                       if (tasksObject.allTasks[index].deadline.isBefore(DateTime.now())){
                         tasksObject.allTasks[index].deadline = DateTime.now().add(Duration(days: 1));
                       }
-                      tasksObject.writeToFile();
                       selected = -1;
                     });
+                    tasksObject.writeToFile();
+                    displayNotification(tasksObject.allTasks[index].name, tasksObject.allTasks[index].assignment, tasksObject.allTasks[index].deadline);
                   } else if (text == 'Edit'){
                     selected = -1;
                     content.value = AddContent(
@@ -360,6 +363,14 @@ class _AllTasksPageState extends State<AllTasksPage> {
       });
     }
     return output;
+  }
+
+  @override
+  void initState() {
+    initializeSetting();
+    tz.initializeTimeZones();
+    // TODO: implement initState
+    super.initState();
   }
 
   @override

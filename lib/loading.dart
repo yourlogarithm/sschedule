@@ -6,6 +6,9 @@ import 'settings/tasks.dart';
 import 'settings/subjectIcons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ads.dart';
+import 'utilities/notifications.dart';
+import 'package:timezone/timezone.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 class Loading extends StatefulWidget {
 // const ({Key key}) : super(key: key);
@@ -37,6 +40,8 @@ class _LoadingState extends State<Loading> {
   }
   @override
   void initState() {
+    initializeSetting();
+    tz.initializeTimeZones();
     // TODO: implement initState
     super.initState();
     interstitionalAd();
