@@ -334,6 +334,7 @@ class _HomeBodyState extends State<HomeBody> {
                                   setState(() {
                                     tasksObject.removeTask(task);
                                   });
+                                  tasksObject.writeToFile();
                                   Navigator.pop(context);
                                 },
                                 child: Text('Yes', style: TextStyle(color: settingsObject.colorScheme.gradientMedium)),

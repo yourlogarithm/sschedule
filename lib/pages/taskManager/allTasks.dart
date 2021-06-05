@@ -261,6 +261,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
                                 setState(() {
                                   tasksObject.removeTask(element);
                                 });
+                                tasksObject.writeToFile();
                                 Navigator.pop(context);
                               },
                               child: Text('Yes'),
