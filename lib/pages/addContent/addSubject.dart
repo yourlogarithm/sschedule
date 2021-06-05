@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sschedule/settings/schedule.dart';
 import 'package:sschedule/settings/settings.dart';
 import 'package:sschedule/settings/subjectIcons.dart';
+import 'package:sschedule/ads.dart';
 
 ValueNotifier<String> confirmedPath = ValueNotifier('images/subjects/flat/Arts.png');
 
@@ -240,6 +241,7 @@ class _AddSubjectState extends State<AddSubject> {
                       currentFocus.unfocus();
                     }
                     if(nameController.text.isNotEmpty){
+                      interstitionalAd();
                       String name = nameController.text;
                       String category = dropdownValue;
                       String imagePath = confirmedPath.value;

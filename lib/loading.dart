@@ -5,6 +5,7 @@ import 'settings/schedule.dart';
 import 'settings/tasks.dart';
 import 'settings/subjectIcons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ads.dart';
 
 class Loading extends StatefulWidget {
 // const ({Key key}) : super(key: key);
@@ -13,7 +14,6 @@ class Loading extends StatefulWidget {
   @override
   _LoadingState createState() => _LoadingState();
 }
-
 class _LoadingState extends State<Loading> {
   startTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -26,7 +26,15 @@ class _LoadingState extends State<Loading> {
       return true;
     }
   }
-
+  void nextRoute(){
+    startTime().then((value) {
+      if (value){
+        Navigator.pushReplacementNamed(context, '/welcome');
+      } else {
+        Navigator.pushReplacementNamed(context, '/content');
+      }
+    });
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -38,15 +46,14 @@ class _LoadingState extends State<Loading> {
       scheduleObject.setWeekDays();
     });
     subjectIconsObject.getPaths().then((value) => subjectIconsObject.paths = value);
-    tasksObject.init().then((_){
-      startTime().then((value) {
-        if (value){
-          Navigator.pushReplacementNamed(context, '/welcome');
-        } else {
-          Navigator.pushReplacementNamed(context, '/content');
-        }
-      });
-    });
+    tasksObject.init().then((_){});
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    interstitionalAd(func: nextRoute);
   }
 
   @override
@@ -60,4 +67,6 @@ class _LoadingState extends State<Loading> {
     );
   }
 }
+
+
 
