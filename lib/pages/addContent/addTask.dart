@@ -355,7 +355,7 @@ class _AddTaskState extends State<AddTask> {
                         taskController.clear();
                         dateTimeContent = emptyDateTimeContent(false, Color.fromRGBO(115, 115, 115, 1));
                         colorContainer = Color.fromRGBO(246, 246, 246, 1);
-                        deadlineValue = DateTime(1900);
+                        deadlineValue = loadTime;
                         addedSuccessfully = 'Added successfuly';
                       });
                     } else {
@@ -369,7 +369,7 @@ class _AddTaskState extends State<AddTask> {
                             colorTaskHint = Color.fromRGBO(237, 114, 114, 1);
                           });
                       }
-                      if (deadlineValue == DateTime(1900)){
+                      if (deadlineValue == loadTime){
                           setState(() {
                             dateTimeContent = emptyDateTimeContent(false, Color.fromRGBO(237, 114, 114, 1));
                             colorContainer = Color.fromRGBO(246, 246, 246, 1);

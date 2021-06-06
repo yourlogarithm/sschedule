@@ -221,15 +221,38 @@ class _HomeBodyState extends State<HomeBody> {
       List<Container> containers = [];
       for (int i = 0; i < activeTasks.length; i++){
         SingleTask task = activeTasks[i];
-        int difference = task.deadline.add(Duration(days: 1)).difference(DateTime.now()).inDays;
+        int difference = task.deadline.difference(DateTime.now()).inHours;
         String timeLeftUntilTask;
         String noun;
-        if (difference == 1) {
-          noun = "day";
-        } else {
-          noun = "days";
+        switch (difference > 24){
+          case true:
+            difference = task.deadline.add(Duration(hours: 12)).difference(DateTime.now()).inDays;
+            switch (difference > 1){
+              case true:
+                noun = 'days';
+                break;
+              default:
+                noun = 'day';
+            }
+            break;
+          default:
+            switch (difference > 1){
+              case true:
+                noun = 'hours';
+                break;
+              default:
+                difference = task.deadline.difference(DateTime.now()).inMinutes;
+                switch (difference == 1){
+                  case true:
+                    noun = 'minute';
+                    break;
+                  default:
+                    noun = 'minutes';
+                    break;
+                }
+            }
         }
-        timeLeftUntilTask = '$difference $noun left';
+        timeLeftUntilTask = '$difference $noun';
         if (difference <= 1 || i < 4){
           List<Color> colors = taskColorsCreator(task);
           Widget containerContent;
