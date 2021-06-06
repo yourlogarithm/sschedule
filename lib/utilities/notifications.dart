@@ -4,9 +4,18 @@ import 'package:timezone/timezone.dart' as tz;
 FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future<void> displayNotification(String title, String task, DateTime deadline) async{
-  DateTime sendDate = deadline.subtract(Duration(days: 1));
-  if (sendDate.isBefore(DateTime.now())){
-    sendDate = DateTime.now().add(Duration(seconds: 15));
+  DateTime sendDate;
+  int duration = deadline.difference(DateTime.now()).inMinutes;
+  if (duration >= 2880){
+    sendDate = deadline.subtract(Duration(days: 1));
+  } else if (duration >= 1440){
+    sendDate = deadline.subtract(Duration(hours: 12));
+  } else if (duration >= 720){
+    sendDate = deadline.subtract(Duration(hours: 2));
+  } else if (duration >= 120){
+    sendDate = deadline.subtract(Duration(hours: 1));
+  } else {
+    sendDate = deadline.subtract(Duration(minutes: 15));
   }
   void _sendMessage(DateTime time) {
     notificationsPlugin.zonedSchedule(
