@@ -7,7 +7,6 @@ import 'settings/subjectIcons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ads.dart';
 import 'utilities/notifications.dart';
-import 'package:timezone/timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 class Loading extends StatefulWidget {
@@ -43,7 +42,6 @@ class _LoadingState extends State<Loading> {
   void initState() {
     initializeSetting();
     tz.initializeTimeZones();
-    // TODO: implement initState
     super.initState();
     settingsObject.init().then((_){
       settingsObject.setColorScheme(settingsObject.stringColorScheme);

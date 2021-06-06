@@ -23,7 +23,6 @@ class _AddContentState extends State<AddContent> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(vsync: this, length: 2, initialIndex: widget.initialIndex);
   }

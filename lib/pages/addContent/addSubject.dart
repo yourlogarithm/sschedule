@@ -24,14 +24,12 @@ class _AddSubjectState extends State<AddSubject> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     nameController.dispose();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.edit){
       nameController.text = widget.subject.name;
@@ -63,7 +61,8 @@ class _AddSubjectState extends State<AddSubject> {
                           color: settingsObject.colorScheme.label,
                           fontFamily: 'Open Sans',
                           fontWeight: FontWeight.bold,
-                          fontSize: 24),
+                          fontSize: 24
+                      ),
                     ),
                   )
                 ],
@@ -79,14 +78,16 @@ class _AddSubjectState extends State<AddSubject> {
                 decoration: InputDecoration(
                   hintText: 'Enter the subject name...',
                   hintStyle: TextStyle(
-                      fontFamily: 'Open Sans', fontWeight: FontWeight.w600,
+                      fontFamily: 'Open Sans',
+                      fontWeight: FontWeight.w600,
                       color: hintColorName
                   ),
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                    color: settingsObject.colorScheme.gradientMedium,
-                    width: 2,
-                  )),
+                        color: settingsObject.colorScheme.gradientMedium,
+                        width: 2,
+                      )
+                  ),
                 ),
               )
             ],
@@ -111,7 +112,8 @@ class _AddSubjectState extends State<AddSubject> {
                               color: settingsObject.colorScheme.label,
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.bold,
-                              fontSize: 20),
+                              fontSize: 20
+                          ),
                         ),
                       )
                     ],
