@@ -122,10 +122,9 @@ class _WeekScheduleState extends State<WeekSchedule> with SingleTickerProviderSt
     if (widget.transition){
       initialIndex = widget.initialValue;
     } else {
-      initialIndex = DateTime.now().weekday - subtractionVal;
+      initialIndex = DateTime.now().weekday - 1;
     }
-    _tabController =
-        TabController(length: 7, vsync: this, initialIndex: initialIndex);
+    _tabController = TabController(length: 7, vsync: this, initialIndex: initialIndex);
     selected = initialIndex;
     scrollController.addListener(() {
       if (scrollController.position.pixels >= MediaQuery.of(context).size.height * 0.15){
