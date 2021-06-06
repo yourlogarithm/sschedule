@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sschedule/ads.dart';
 import 'package:sschedule/content.dart';
 import 'package:sschedule/utilities/gradienttext.dart';
 import 'package:sschedule/settings/settings.dart';
@@ -51,6 +52,8 @@ class SettingsPage extends StatelessWidget {
                                   context: context,
                                   builder: (_) {
                                     return ChangeNameDialog();
+                                  }).then((exit) {
+                                    interstitialAd();
                                   });
                             },
                             fillColor: Colors.white,
@@ -82,6 +85,8 @@ class SettingsPage extends StatelessWidget {
                             onPressed: () {
                               showDialog(context: context, builder: (_) {
                                 return ChangeAvatar();
+                              }).then((exit) {
+                                interstitialAd();
                               });
                             },
                             fillColor: Colors.white,
@@ -153,7 +158,9 @@ class SettingsPage extends StatelessWidget {
                                 context: context,
                                 builder: (_) {
                                   return ChangeColorSchemeDialog();
-                                });
+                                }).then((exit) {
+                              interstitialAd();
+                            });
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 20),
@@ -188,6 +195,8 @@ class SettingsPage extends StatelessWidget {
                           onTap: () {
                             showDialog(context: context, builder: (_) {
                               return ChangeLessonDuration();
+                            }).then((exit) {
+                              interstitialAd();
                             });
                           },
                           child: Container(
@@ -224,7 +233,9 @@ class SettingsPage extends StatelessWidget {
                                 context: context,
                                 builder: (_) {
                                   return ChangeWeekDayStart();
-                                });
+                                }).then((exit) {
+                              interstitialAd();
+                            });
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 20),

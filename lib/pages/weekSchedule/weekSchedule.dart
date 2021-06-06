@@ -142,6 +142,14 @@ class _WeekScheduleState extends State<WeekSchedule> with SingleTickerProviderSt
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.dispose();
+    _tabController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {

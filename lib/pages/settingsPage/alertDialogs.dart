@@ -4,7 +4,6 @@ import 'package:sschedule/settings/schedule.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:sschedule/ads.dart';
 
 class ChangeNameDialog extends StatefulWidget {
   // const ChangeNameDialog({Key key}) : super(key: key);
@@ -60,7 +59,6 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
       actions: [
         TextButton(
           onPressed: () {
-            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -71,7 +69,6 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
         TextButton(
           onPressed: () {
             if (controller.text.length >= 2 && controller.text[0] != ' ' && controller.text[1] != ' ') {
-              interstitialAd();
               settingsObject.name = controller.text;
               settingsObject.writeToFile();
               Navigator.pop(context);
@@ -148,7 +145,6 @@ class _ChangeColorSchemeDialogState extends State<ChangeColorSchemeDialog> {
       actions: [
         TextButton(
           onPressed: () {
-            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -158,7 +154,6 @@ class _ChangeColorSchemeDialogState extends State<ChangeColorSchemeDialog> {
         ),
         TextButton(
           onPressed: () {
-            interstitialAd();
             setState(() {
               switch (selected) {
                 case 'Dark Green':
@@ -238,7 +233,6 @@ class _ChangeWeekDayStartState extends State<ChangeWeekDayStart> {
       actions: [
         TextButton(
           onPressed: () {
-            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -247,7 +241,6 @@ class _ChangeWeekDayStartState extends State<ChangeWeekDayStart> {
         ),
         TextButton(
           onPressed: () {
-            interstitialAd();
             scheduleObject.weekStart = selected;
             scheduleObject.writeToFile();
             Navigator.pop(context);
@@ -308,7 +301,6 @@ class _ChangeLessonDurationState extends State<ChangeLessonDuration> {
       actions: [
         TextButton(
           onPressed: () {
-            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -318,7 +310,6 @@ class _ChangeLessonDurationState extends State<ChangeLessonDuration> {
         ),
         TextButton(
           onPressed: () {
-            interstitialAd();
             scheduleObject.lessonDuration = lessonDuration;
             scheduleObject.writeToFile();
             scheduleObject.init().then((_){
@@ -427,7 +418,6 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
       actions: [
         TextButton(
           onPressed: () {
-            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -437,7 +427,6 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
         ),
         TextButton(
           onPressed: () {
-            interstitialAd();
             settingsObject.changeImage(_image);
             settingsObject.writeToFile();
             Navigator.pop(context);
