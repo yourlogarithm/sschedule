@@ -44,7 +44,7 @@ class _LoadingState extends State<Loading> {
     tz.initializeTimeZones();
     // TODO: implement initState
     super.initState();
-    interstitionalAd();
+    interstitialAd();
     settingsObject.init().then((_){
       settingsObject.setColorScheme(settingsObject.stringColorScheme);
     });

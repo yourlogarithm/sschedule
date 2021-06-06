@@ -11,7 +11,7 @@ class ScheduleManager extends JSONFile {
   ScheduleManager(filename) : super(filename);
   late String weekStart;
   late int lessonDuration;
-  late List schedule;
+  List schedule = [];
   List<Subject> subjects = [];
 
   List<String> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -24,6 +24,7 @@ class ScheduleManager extends JSONFile {
     if (fileExists) {
       String data = await jsonFile.readAsString();
       fileContent = jsonDecode(data);
+      subjects = [];
       fileContent['subjects'].forEach((key, value) {
         subjects.add(Subject(name: key, imagePath: value[1], category: value[0]));
       });
@@ -87,7 +88,7 @@ class ScheduleManager extends JSONFile {
     Map tempContent = {
       'schedule': jsonReadableSchedule,
       'lessonDuration': lessonDuration,
-      'weekStart': 'Monday',
+      'weekStart': weekStart,
       'subjects': jsonReadableSubjects
     };
     fileContent = tempContent;

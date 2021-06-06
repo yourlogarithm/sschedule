@@ -53,6 +53,7 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
       actions: [
         TextButton(
           onPressed: () {
+            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -63,7 +64,7 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
         TextButton(
           onPressed: () {
             if (controller.text.length >= 2 && controller.text[0] != ' ' && controller.text[1] != ' ') {
-              interstitionalAd();
+              interstitialAd();
               settingsObject.name = controller.text;
               settingsObject.writeToFile();
               Navigator.pop(context);
@@ -140,6 +141,7 @@ class _ChangeColorSchemeDialogState extends State<ChangeColorSchemeDialog> {
       actions: [
         TextButton(
           onPressed: () {
+            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -149,7 +151,7 @@ class _ChangeColorSchemeDialogState extends State<ChangeColorSchemeDialog> {
         ),
         TextButton(
           onPressed: () {
-            interstitionalAd();
+            interstitialAd();
             setState(() {
               switch (selected) {
                 case 'Dark Green':
@@ -229,6 +231,7 @@ class _ChangeWeekDayStartState extends State<ChangeWeekDayStart> {
       actions: [
         TextButton(
           onPressed: () {
+            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -237,7 +240,7 @@ class _ChangeWeekDayStartState extends State<ChangeWeekDayStart> {
         ),
         TextButton(
           onPressed: () {
-            interstitionalAd();
+            interstitialAd();
             scheduleObject.weekStart = selected;
             scheduleObject.writeToFile();
             Navigator.pop(context);
@@ -298,6 +301,7 @@ class _ChangeLessonDurationState extends State<ChangeLessonDuration> {
       actions: [
         TextButton(
           onPressed: () {
+            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -307,10 +311,13 @@ class _ChangeLessonDurationState extends State<ChangeLessonDuration> {
         ),
         TextButton(
           onPressed: () {
-            interstitionalAd();
+            interstitialAd();
             scheduleObject.lessonDuration = lessonDuration;
             scheduleObject.writeToFile();
-            Navigator.pop(context);
+            scheduleObject.init().then((_){
+              scheduleObject.setWeekDays();
+              Navigator.pop(context);
+            });
           },
           child: Text(
               'Confirm',
@@ -413,6 +420,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
       actions: [
         TextButton(
           onPressed: () {
+            interstitialAd();
             Navigator.pop(context);
           },
           child: Text(
@@ -422,7 +430,7 @@ class _ChangeAvatarState extends State<ChangeAvatar> {
         ),
         TextButton(
           onPressed: () {
-            interstitionalAd();
+            interstitialAd();
             settingsObject.changeImage(_image);
             settingsObject.writeToFile();
             Navigator.pop(context);

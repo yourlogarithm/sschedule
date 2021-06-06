@@ -1,6 +1,6 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-void interstitionalAd(){
+void interstitialAd(){
   AdManagerInterstitialAd? _interstitialAd;
   AdManagerInterstitialAd.load(
       adUnitId: 'ca-app-pub-3940256099942544/1033173712',

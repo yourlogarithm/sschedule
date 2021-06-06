@@ -241,7 +241,7 @@ class _AddSubjectState extends State<AddSubject> {
                       currentFocus.unfocus();
                     }
                     if(nameController.text.isNotEmpty){
-                      interstitionalAd();
+                      interstitialAd();
                       String name = nameController.text;
                       String category = dropdownValue;
                       String imagePath = confirmedPath.value;

@@ -291,7 +291,7 @@ class _AddTaskState extends State<AddTask> {
                       currentFocus.unfocus();
                     }
                     if (titleController.text.isNotEmpty && taskController.text.isNotEmpty && deadlineValue != DateTime(1900)) {
-                      interstitionalAd();
+                      interstitialAd();
                       DateTime creationDate = DateTime.now();
                       int id;
                       if (tasksObject.allTasks.isNotEmpty) {
