@@ -18,6 +18,13 @@ class _ChangeNameDialogState extends State<ChangeNameDialog> {
   TextEditingController controller = TextEditingController();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
