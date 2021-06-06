@@ -34,6 +34,7 @@ class _LoadingState extends State<Loading> {
       if (value){
         Navigator.pushReplacementNamed(context, '/welcome');
       } else {
+        interstitialAd();
         Navigator.pushReplacementNamed(context, '/content');
       }
     });
@@ -44,7 +45,6 @@ class _LoadingState extends State<Loading> {
     tz.initializeTimeZones();
     // TODO: implement initState
     super.initState();
-    interstitialAd();
     settingsObject.init().then((_){
       settingsObject.setColorScheme(settingsObject.stringColorScheme);
     });
