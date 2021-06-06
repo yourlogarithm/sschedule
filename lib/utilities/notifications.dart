@@ -14,8 +14,10 @@ Future<void> displayNotification(String title, String task, DateTime deadline) a
     sendDate = deadline.subtract(Duration(hours: 2));
   } else if (duration >= 120){
     sendDate = deadline.subtract(Duration(hours: 1));
-  } else {
+  } else if (duration >= 30) {
     sendDate = deadline.subtract(Duration(minutes: 15));
+  } else {
+    sendDate = deadline.subtract(Duration(minutes: 5));
   }
   void _sendMessage(DateTime time) {
     notificationsPlugin.zonedSchedule(
@@ -30,7 +32,9 @@ Future<void> displayNotification(String title, String task, DateTime deadline) a
         androidAllowWhileIdle: true
     );
   }
-  _sendMessage(sendDate);
+  if (sendDate.isAfter(DateTime.now())){
+      _sendMessage(sendDate);
+  }
 }
 
 void initializeSetting() async {

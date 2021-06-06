@@ -294,51 +294,57 @@ class _AddTaskState extends State<AddTask> {
                       interstitialAd();
                       DateTime creationDate = DateTime.now();
                       int id;
-                      if (tasksObject.allTasks.isNotEmpty) {
-                        List<int> ids = [];
-                        tasksObject.allTasks.forEach((element) {ids.add(element.id);});
-                        id = ids.reduce(max) + 1;
-                      } else {
-                        id = 0;
+                      switch (tasksObject.allTasks.isNotEmpty){
+                        case true:
+                          List<int> ids = [];
+                          tasksObject.allTasks.forEach((element) {ids.add(element.id);});
+                          id = ids.reduce(max) + 1;
+                          break;
+                        default:
+                          id = 0;
+                          break;
                       }
                       SingleTask tempTask;
-                      if (widget.task.status == 'completed') {
-                        tempTask = SingleTask(
-                            id: id,
-                            deadline: deadlineValue,
-                            creationDate: creationDate,
-                            name: titleController.text,
-                            assignment: taskController.text,
-                            status: 'completed'
-                        );
-                      } else {
-                        if (deadlineValue.isAfter(creationDate)) {
-                          tempTask = SingleTask(
-                              id: id,
-                              deadline: deadlineValue,
-                              creationDate: creationDate,
-                              name: titleController.text,
-                              assignment: taskController.text
-                          );
-                        } else {
+                      switch (widget.task.status){
+                        case 'completed':
                           tempTask = SingleTask(
                               id: id,
                               deadline: deadlineValue,
                               creationDate: creationDate,
                               name: titleController.text,
                               assignment: taskController.text,
-                              status: 'missed'
+                              status: 'completed'
                           );
-                        }
+                          break;
+                        default:
+                          switch (deadlineValue.isAfter(creationDate)){
+                            case true:
+                              displayNotification(titleController.text, taskController.text, deadlineValue);
+                              tempTask = SingleTask(
+                                  id: id,
+                                  deadline: deadlineValue,
+                                  creationDate: creationDate,
+                                  name: titleController.text,
+                                  assignment: taskController.text
+                              );
+                              break;
+                            default:
+                              tempTask = SingleTask(
+                                  id: id,
+                                  deadline: deadlineValue,
+                                  creationDate: creationDate,
+                                  name: titleController.text,
+                                  assignment: taskController.text,
+                                  status: 'missed'
+                              );
+                              break;
+                          }
                       }
                       tasksObject.addTask(tempTask);
-                      if (widget.edit) {
+                      if (widget.edit){
                         tasksObject.allTasks.remove(widget.task);
                       }
                       tasksObject.writeToFile();
-                      if (widget.task.status == 'active'){
-                        displayNotification(titleController.text, taskController.text, deadlineValue);
-                      }
                       setState(() {
                         titleController.clear();
                         taskController.clear();
@@ -348,23 +354,21 @@ class _AddTaskState extends State<AddTask> {
                         addedSuccessfully = 'Added successfuly';
                       });
                     } else {
-                      if (titleController.text.isEmpty) {
+                      if (titleController.text.isEmpty){
                         setState(() {
                           colorTitleHint = Color.fromRGBO(237, 114, 114, 1);
                         });
                       }
-                      if (taskController.text.isEmpty) {
-                        setState(() {
-                          colorTaskHint = Color.fromRGBO(237, 114, 114, 1);
-                        });
+                      if (taskController.text.isEmpty){
+                          setState(() {
+                            colorTaskHint = Color.fromRGBO(237, 114, 114, 1);
+                          });
                       }
-                      if (deadlineValue == DateTime(1900)) {
-                        setState(() {
-                          dateTimeContent = emptyDateTimeContent(
-                              false, Color.fromRGBO(237, 114, 114, 1));
-                          colorContainer =
-                              Color.fromRGBO(246, 246, 246, 1);
-                        });
+                      if (deadlineValue == DateTime(1900)){
+                          setState(() {
+                            dateTimeContent = emptyDateTimeContent(false, Color.fromRGBO(237, 114, 114, 1));
+                            colorContainer = Color.fromRGBO(246, 246, 246, 1);
+                          });
                       }
                     }
                   },
