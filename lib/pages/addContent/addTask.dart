@@ -23,7 +23,8 @@ class AddTask extends StatefulWidget {
 class _AddTaskState extends State<AddTask> {
   TextEditingController titleController = TextEditingController();
   TextEditingController taskController = TextEditingController();
-  DateTime deadlineValue = DateTime(1900);
+  late DateTime loadTime;
+  late DateTime deadlineValue;
   String addedSuccessfully = '';
 
   Color colorTitleHint = Color.fromRGBO(115, 115, 115, 1);
@@ -93,6 +94,8 @@ class _AddTaskState extends State<AddTask> {
   void initState() {
     super.initState();
     bool initEdit = widget.edit ? true : false;
+    loadTime = DateTime.now();
+    deadlineValue = loadTime;
     dateTimeContent = emptyDateTimeContent(initEdit, Color.fromRGBO(115, 115, 115, 1));
     if (initEdit) {
       titleController.text = widget.task.name;
@@ -104,7 +107,6 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     titleController.dispose();
     taskController.dispose();
@@ -127,7 +129,8 @@ class _AddTaskState extends State<AddTask> {
                       color: Color.fromRGBO(96, 96, 96, 1),
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.w600,
-                      fontSize: 24),
+                      fontSize: 24
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 5),
@@ -153,7 +156,8 @@ class _AddTaskState extends State<AddTask> {
                               width: 2,
                             )
                         ),
-                      )),
+                      )
+                  ),
                 )
               ],
             ),
@@ -172,12 +176,12 @@ class _AddTaskState extends State<AddTask> {
                             color: Color.fromRGBO(96, 96, 96, 1),
                             fontFamily: 'Open Sans',
                             fontWeight: FontWeight.w600,
-                            fontSize: 24),
+                            fontSize: 24
+                        ),
                       ),
                       Container(
                           margin: EdgeInsets.only(top: 5),
-                          width:
-                              MediaQuery.of(context).size.width / 2 - 30,
+                          width: MediaQuery.of(context).size.width / 2 - 30,
                           child: Center(
                             child: TextField(
                                 controller: taskController,
@@ -199,14 +203,15 @@ class _AddTaskState extends State<AddTask> {
                                         borderRadius:
                                             BorderRadius.circular(10),
                                         borderSide: BorderSide(
-                                          color: settingsObject
-                                              .colorScheme.gradientMedium,
+                                          color: settingsObject.colorScheme.gradientMedium,
                                           width: 2,
                                         )),
                                     border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)))),
-                          ))
+                                        borderRadius: BorderRadius.circular(10))
+                                )
+                            ),
+                          )
+                      )
                     ],
                   ),
                 ),
@@ -252,7 +257,7 @@ class _AddTaskState extends State<AddTask> {
                                         dateTimeContent = fillDateTimeContent(date);
                                       });
                                    },
-                                    currentTime: DateTime.now().add(Duration(days: 1)),
+                                    currentTime: deadlineValue,
                                     locale: LocaleType.en);
                               },
                               borderRadius: BorderRadius.circular(25),
@@ -290,7 +295,7 @@ class _AddTaskState extends State<AddTask> {
                     if (!currentFocus.hasPrimaryFocus) {
                       currentFocus.unfocus();
                     }
-                    if (titleController.text.isNotEmpty && taskController.text.isNotEmpty && deadlineValue != DateTime(1900)) {
+                    if (titleController.text.isNotEmpty && taskController.text.isNotEmpty && deadlineValue != loadTime) {
                       interstitialAd();
                       DateTime creationDate = DateTime.now();
                       int id;
